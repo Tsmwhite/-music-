@@ -1,0 +1,10 @@
+<dl class="{$deep == 1 ? 'layui-nav layui-nav-tree' : 'layui-nav-child'}" data-level="{$deep ?? 'unknow'}">
+    {foreach $list as $vo}
+    <dd class="{:$deep == 1 ? 'layui-nav-item' : ''} {php}if ($m == ($vo['node_module'] ?? '') && $c == ($vo['node_controller'] ?? '') && $a == ($vo['node_action'] ?? '') && $deep != 1) {echo 'layui-nav-itemed';}{/php}" data-i="{$vo['menu_nid']}">
+        <a data-left="{$deep}" data-link="{$vo.menu_id}" href="{$vo['menu_nid'] ? ('/' . $vo['node_module'] . '/' . $vo['node_controller'] . '/' . $vo['node_action']) : 'javascript:void(0);'}"><i class="{$vo.menu_class} menu-icon"></i>{$vo['menu_name']}</a>
+        {if condition="count($vo['child_menu'] ?? [])"}
+        {php}echo \app\common\component\Menu\Menu::getContent(['list' => $vo['child_menu'], 'deep' => ($deep + 1)]);{/php}
+        {/if}
+    </dd>
+    {/foreach}
+</dl>

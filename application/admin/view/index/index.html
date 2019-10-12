@@ -1,0 +1,42 @@
+{extend name="./template/base.html" /}
+
+{block name="content"}
+
+<div class="card">
+    <div class="card-header">系统信息</div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-3">
+                <p class="card-title">平台</p>
+                <p class="card-text">{$os ?? 'unknow'}</p>
+            </div>
+
+            <div class="col-3">
+                <p class="card-title">系统目录</p>
+                <p class="card-text">{$cwd ?? 'unknow'}</p>
+            </div>
+
+            <div class="col-3">
+                <p class="card-title">系统根目录</p>
+                <p class="card-text">{$root_path ?? 'unknow'}</p>
+            </div>
+
+            <div class="col-3">
+                <p class="card-title">硬盘使用情况</p>
+                <p class="card-text" style="font-weight: bold">
+                    <a class="text-info" href="javascript:void(0);">{:round($disk_total_space - $disk_free_space, 2) ?? '0'}GB</a>
+                    /
+                    <a class="text-dark">{:round($disk_total_space, 2) ?? '0'}GB</a>
+                </p>
+
+                <p class="card-text">
+                    剩余:
+                    <a href="javascript: void(0);" class="text-info font-weight-bold">{:round($disk_free_space, 2)}GB</a>
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{/block}

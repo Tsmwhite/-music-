@@ -1,0 +1,27 @@
+<?php
+$value = date('Y-m-d H:i:s',$value);
+?>
+<div class="form-group">
+    <label>{$fieldName}</label>
+    <input placeholder="{$fieldName}" name="{$field}" value="{$value ?? ''}" type="text"
+           data-input-type="{$data['type'] ?? 'datetime'}" data-format="{$data['format'] ?? ''}" class="form-control">
+    {if condition="!empty($msg)"}
+    <small class="form-text text-muted">{$msg}</small>
+    {/if}
+    {if condition="!empty($err)"}
+    <small class="form-text text-danger input-error">{$err}</small>
+    {/if}
+</div>
+
+<!--
+$fieldName      字段中文名
+$field          字段名
+$value          默认值
+$msg            提示文本
+$err            报错信息
+
+$data['type']   时间类型, 如: datetime, date, time, year, month...
+$data['format'] 输出格式, 参考 https://www.layui.com/doc/modules/laydate.html 中关于 format 的说明
+
+datetime 组件使用了 laydate 插件, 详细的文档可以参考: https://www.layui.com/doc/modules/laydate.html
+-->

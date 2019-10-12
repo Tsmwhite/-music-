@@ -1,0 +1,19 @@
+{extend name="./template/base.html"}
+
+{block name="content"}
+
+<a class="btn-link btn" href="{:url('index')}">返回</a>
+
+<hr>
+
+<form class="update-form" method="post">
+    {$formGroup}
+
+    <input type="hidden" name="action" value="update">
+
+    <button class="btn btn-success" type="submit">提交</button>
+    <button class="btn btn-warning" type="reset">重置</button>
+
+</form>
+
+{/block}

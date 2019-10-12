@@ -1,0 +1,45 @@
+
+{extend name="base"}
+
+
+{block name="content"}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{:url('admin/index/index')}">首页</a></li>
+            <li class="breadcrumb-item"><a href="index.html">教师管理</a></li>
+            <li class="breadcrumb-item active" aria-current="page">审核</li>
+        </ol>
+    </nav>
+    
+        <div class="form-group">
+    <label>教师名称</label>
+    <input placeholder="教师名称" name="dGVhY2hlci5uYW1l0" value="<?php echo $teacher_info['name'];?>" type="text" class="form-control">
+    </div><div class="form-group">
+    <label>地址</label>
+    <input placeholder="地址" name="dGVhY2hlci5hZGRyZXNz0" value="<?php echo $teacher_info['address'];?>" type="text" class="form-control">
+    </div><div class="form-group">
+    <label>手机号</label>
+    <input placeholder="手机号" name="dGVhY2hlci5waG9uZQ2" value="<?php echo $teacher_info['phone'];?>" type="text" class="form-control">
+    </div><div class="form-group">
+    <label>邮箱</label>
+    <input placeholder="邮箱" name="dGVhY2hlci5lbWFpbA2" value="<?php echo $teacher_info['email'];?>" type="text" class="form-control">
+    </div><div class="form-group">
+    <label>ABN</label>
+    <input placeholder="ABN" name="dGVhY2hlci5BQk41" value="<?php echo $teacher_info['ABN'];?>" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+    <label>简介</label>
+    <input placeholder="简介" name="dGVhY2hlci5jb250ZW500" value="<?php echo $teacher_info['content'];?>" type="text" class="form-control">
+    </div><div class="form-group">
+    <label>证件号</label>
+    <input placeholder="证件号" name="dGVhY2hlci5jYXJk0" value="<?php echo $teacher_info['card'];?>" type="text" class="form-control">
+    </div><div class="form-group" data-input-type="imgUpload">
+
+</div>
+    
+        <a href = "/admin/teacher/renzheng.html?id=<?php echo $teacher_info['id'];?>&type=1"><button class="btn btn-success" type="submit">成功</button></a>
+        <a href = "/admin/teacher/renzheng.html?id=<?php echo $teacher_info['id'];?>&type=2"><button class="btn btn-warning" type="reset">失败</button></a>
+
+
+{/block}

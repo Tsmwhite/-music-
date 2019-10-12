@@ -1,0 +1,61 @@
+{if condition="$data['type'] == 'province'"}
+<div class="form-group">
+    <label>{$fieldName}</label>
+    <select data-input-type="province"
+            class="form-control"
+            data-value="{$value ?? ''}"
+            data-gp="{$data['group'] ?? 1}">
+        <option value="__unset">请选择</option>
+    </select>
+
+    <input type="hidden" name="{$field}" value="{$value ?? ''}">
+    {if condition="!empty($msg)"}
+    <small class="form-text text-muted">{$msg}</small>
+    {/if}
+    {if condition="!empty($err)"}
+    <small class="form-text text-danger input-error">{$err}</small>
+    {/if}
+</div>
+{/if}
+
+
+{if condition="$data['type'] == 'city'"}
+<div class="form-group">
+    <label>{$fieldName}</label>
+    <select name="{$field}"
+            data-input-type="city"
+            class="form-control"
+            data-value="{$value ?? ''}"
+            data-gp="{$data['group'] ?? 1}">
+        <option value="__unset">请选择</option>
+    </select>
+    <input type="hidden" name="{$field}" value="{$value ?? ''}">
+    {if condition="!empty($msg)"}
+    <small class="form-text text-muted">{$msg}</small>
+    {/if}
+    {if condition="!empty($err)"}
+    <small class="form-text text-danger input-error">{$err}</small>
+    {/if}
+</div>
+{/if}
+
+
+{if condition="$data['type'] == 'area'"}
+<div class="form-group">
+    <label>{$fieldName}</label>
+    <select name="{$field}"
+            data-input-type="area"
+            class="form-control"
+            data-value="{$value ?? ''}"
+            data-gp="{$data['group'] ?? 1}">
+        <option value="__unset">请选择</option>
+    </select>
+    <input type="hidden" name="{$field}" value="{$value ?? ''}">
+    {if condition="!empty($msg)"}
+    <small class="form-text text-muted">{$msg}</small>
+    {/if}
+    {if condition="!empty($err)"}
+    <small class="form-text text-danger input-error">{$err}</small>
+    {/if}
+</div>
+{/if}

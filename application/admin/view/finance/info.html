@@ -1,0 +1,21 @@
+
+{extend name="base"}
+
+
+{block name="content"}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{:url('admin/index/index')}">首页</a></li>
+            <li class="breadcrumb-item"><a href="index.html">薪资管理</a></li>
+            <li class="breadcrumb-item active" aria-current="page">详情</li>
+        </ol>
+    </nav>
+    
+        <div class="form-group">
+    <label>薪资</label>
+    <input placeholder="总金额" name="dGVhY2hlci5uYW1l0" value="<?php echo $price;?>" type="text" class="form-control">
+    </div><div class="form-group">
+
+</div>
+
+{/block}

@@ -1,0 +1,8 @@
+<div class="form-group col-md-3 col-sm-6">
+    <select name="{$field}" class="form-control">
+        <option value="__unset">请选择{$name}</option>
+        {volist name='$list' id='vo'}
+        <option value="{$vo[$data['value']]}" {if condition="$vo[$data['value']] == ($value ?? false)"}selected{/if}>{$vo[$data['field']]}</option>
+        {/volist}
+    </select>
+</div>

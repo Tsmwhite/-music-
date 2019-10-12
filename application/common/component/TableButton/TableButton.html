@@ -1,0 +1,4 @@
+<a href="{$data['url']}"
+   {if condition="!empty($data['confirm'])" }onclick="return confirm('{$data['confirm']}')" {/if}
+    class="btn btn-sm btn-outline-{$data['type']}"
+    {if condition="!empty($data['formUrl'])"}data-form="{$data['formUrl']}"{/if}>{$data['name']}</a>

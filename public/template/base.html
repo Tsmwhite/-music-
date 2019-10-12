@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>{:$title ?? getSiteSetting()['title']}</title>
+    <link rel="stylesheet" href="/static/common/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/common/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/css/admin.css">
+    <!--检查是否为IE浏览器-->
+    <script type="text/javascript">
+        var userAgent = navigator.userAgent;
+        if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1) {
+            // IE 浏览器版本小于等于 10
+            alert('不支持IE11以下版本的浏览器');
+        }
+
+        if (userAgent.indexOf('Trident') > -1 && userAgent.indexOf("rv:11.0") > -1) {
+            // IE 11
+        }
+    </script>
+    <script type="text/javascript" src="/static/js/polyfill.min.js"></script>
+    <script type="text/javascript" src="/static/common/axios/axios.min.js"></script>
+    <script type="text/javascript" src="/static/js/alert.js"></script>
+    <script type="text/javascript" src="/static/common/layui/layui.js"></script>
+    <script type="text/javascript" src="/static/common/ckeditor/translations/zh-cn.js"></script>
+    <script type="text/javascript" src="/static/common/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="/static/common/js.cookie.js"></script>
+    <script type="text/javascript" src="/static/common/echarts/echarts.min.js"></script>
+    <script type="text/javascript" src="/static/js/common.js"></script>
+
+    {block name="style"}{/block}
+</head>
+<body>
+<div class="header">
+    <ul class="layui-nav">
+        <li class="logo-wp">
+            <img class="nav-logo" src="{:getSiteSetting()['logo']}">
+            <p class="site-name">{:getSiteSetting()['title']}</p>
+        </li>
+
+        <li class="layui-nav-item" title="编辑用户信息">
+            <a href="#">
+                <img src="{$user['avatar']}" class="layui-nav-img">
+                {$user['username']}
+            </a>
+        </li>
+
+        <li class="layui-nav-item">
+            <a href="/admin/pub/logout" onclick="return confirm('确定要退出当前用户吗?')">
+                退出登陆
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="main-panel">
+    <div class="left-nav">
+
+        <!-- 生成菜单 -->
+        {:getMenuView()}
+
+    </div>
+    <div class="content">
+        <div class="container-fluid">
+            {block name="content"}{/block}
+        </div>
+    </div>
+</div>
+
+
+<!-- 图片加载失败处理 -->
+<script type="text/javascript">
+    elementMap('img', function (i) {
+        i.addEventListener('error', function (e) {
+            this.src = "__ROOT__/static/img/image_not_found.jpg";
+            this.classList.add('border-danger', 'img-failed');
+            this.title = '无法找到该图片';
+        }, false);
+    });
+</script>
+
+<!-- 自定义 js -->
+{block name="script"}{/block}
+</body>
+</html>

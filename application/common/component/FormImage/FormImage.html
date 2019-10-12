@@ -1,0 +1,29 @@
+<div class="form-group" data-input-type="imgUpload">
+    <label class="field-name">{$fieldName}</label>
+    <div class="custom-file">
+        <input type="file" data-name="{$field}" class="custom-file-input" multiple accept="image/*">
+        <input type="hidden" name="{$field}" value="{$value ?? ''}">
+        <label class="custom-file-label">{php}echo !empty($value) ? ('已选择 ' . count(explode(',', $value)) . ' 个文件') : $fieldName;{/php}</label>
+    </div>
+    <small class="form-text text-muted">{$msg ?? '选择图片上传, 支持多图上传, 支持 jpg, gif, png 等格式'}</small>
+    {if condition="!empty($err)"}
+    <small class="form-text text-danger input-error">{$err}</small>
+    {/if}
+    <!-- 上传预览 -->
+    <div class="preview-box {empty($value) ? 'hide' : ''}">
+        {if condition="!empty($value)"}
+
+        {php}$list = explode(',', $value);{/php}
+        {foreach $list as $i}
+        <div class="preview-item">
+            <img class="img-preview" src="{$i}">
+            <div class="img-upload-close btn btn-danger btn-sm" data-input-type="imageUploadClose" data-img-url="{$i}">移除</div>
+        </div>
+        {/foreach}
+
+        {/if}
+    </div>
+    <div class="progress hide">
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" style="width: 0">0%</div>
+    </div>
+</div>

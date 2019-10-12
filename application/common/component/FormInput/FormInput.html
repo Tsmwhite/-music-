@@ -1,0 +1,10 @@
+<div class="form-group">
+    <label>{$fieldName}</label>
+    <input placeholder="{$fieldName}" name="{$field}" value="{$value ?? ''}" type="{$data['type'] ?? 'text'}" class="form-control">
+    {if condition="!empty($msg)"}
+    <small class="form-text text-muted">{$msg}</small>
+    {/if}
+    {if condition="!empty($err)"}
+    <small class="form-text text-danger input-error">{$err}</small>
+    {/if}
+</div>

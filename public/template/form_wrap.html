@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>{:$title ?? getSiteSetting()['title']}</title>
+    <link rel="stylesheet" href="/static/common/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/common/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/css/admin.css">
+    <!--检查是否为IE浏览器-->
+    <script type="text/javascript">
+        var userAgent = navigator.userAgent;
+        if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1) {
+            // IE 浏览器版本小于等于 10
+            alert('不支持IE11以下版本的浏览器');
+        }
+
+        if (userAgent.indexOf('Trident') > -1 && userAgent.indexOf("rv:11.0") > -1) {
+            // IE 11
+        }
+    </script>
+    <script type="text/javascript" src="/static/js/polyfill.min.js"></script>
+    <script type="text/javascript" src="/static/common/axios/axios.min.js"></script>
+    <script type="text/javascript" src="/static/js/alert.js"></script>
+    <script type="text/javascript" src="/static/common/layui/layui.js"></script>
+    <script type="text/javascript" src="/static/common/ckeditor/translations/zh-cn.js"></script>
+    <script type="text/javascript" src="/static/common/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="/static/common/js.cookie.js"></script>
+    <script type="text/javascript" src="/static/common/echarts/echarts.min.js"></script>
+    <script type="text/javascript" src="/static/js/common.js"></script>
+    <style type="text/css">
+        .main-panel {
+            height: unset !important;
+            padding: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+<div class="main-panel">
+
+    <div class="container-fluid">
+        <form method="{$method}" action="{$action}" id="form">
+            {$formView}
+
+            <div class="form-group text-right">
+                <button class="btn btn-success" type="submit" id="submit">提交</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- 图片加载失败处理 -->
+<script type="text/javascript">
+    elementMap('img', function (i) {
+        i.addEventListener('error', function (e) {
+            this.src = "/static/img/image_not_found.jpg";
+            this.classList.add('border-danger', 'img-failed');
+            this.title = '无法找到该图片';
+        }, false);
+    });
+
+
+    // 阻止表单的默认提交事件, 改用 ajax 提交当前表单的内容
+    document.querySelector('#form').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var data = {};
+
+
+        Array.from(document.querySelector('#form').querySelectorAll('input, select, textarea')).forEach(function (i) {
+            if (i.name) {
+                data[i.name] = i.value;
+            }
+        });
+
+        api.request({
+            url: '{$action}',
+            method: "{$method}",
+            data: data
+        }).then(function (res) {
+            if (!res.data.err) {
+                parent.$closeActiveForm('提交成功', res.data);
+            } else {
+                throw new Error(res.data.msg);
+            }
+        }).catch(function (e) {
+            layer.open({
+                icon: 2,
+                content: e instanceof String ? e : e.toString(),
+                title: '错误'
+            })
+        })
+    });
+
+</script>
+</body>
+</html>

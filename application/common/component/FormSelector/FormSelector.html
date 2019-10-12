@@ -1,0 +1,15 @@
+<div class="form-group">
+    <label>{$fieldName}</label>
+    <select name="{$field}" class="form-control">
+        <option value="__unset">请选择</option>
+        {volist name='$list' id='vo'}
+        <option value="{$vo[$data['value']]}" {if condition="$vo[$data['value']] == ($value ?? false)"}selected{/if}>{$vo[$data['field']]}</option>
+        {/volist}
+    </select>
+    {if condition="!empty($msg)"}
+    <small class="form-text text-muted">{$msg}</small>
+    {/if}
+    {if condition="!empty($err)"}
+    <small class="form-text text-danger input-error">{$err}</small>
+    {/if}
+</div>

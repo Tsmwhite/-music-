@@ -1,0 +1,18 @@
+<div class="form-group">
+    <label>{$fieldName}</label>
+    <br/>
+    {volist name='list' id='vo'}
+    <div class="checkbox-group">
+        <label for="{$field}{$key}">
+            <input type="checkbox" id="{$field}{$key}" name="{$field}[]" value="{$vo[$data['value']]}" data-ttt="{$vo[$data['value']]}|{$value ?? 'none'}" {if condition="in_array($vo[$data['value']], explode(',', $value ?? ''))"}checked{/if}>
+            {$vo[$data['field']]}
+        </label>
+    </div>
+    {/volist}
+    {if condition="!empty($msg)"}
+    <small class="form-text text-muted">{$msg}</small>
+    {/if}
+    {if condition="!empty($err)"}
+    <small class="form-text text-danger input-error">{$err}</small>
+    {/if}
+</div>
